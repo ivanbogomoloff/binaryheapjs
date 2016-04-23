@@ -1,4 +1,4 @@
-##Binary heap implementation on Javascript
+##Binary heap (Sorting tree, Priority queue) implementation on Javascript
 Can use this code for priority queue implementation
 
 Examples for max heap:
