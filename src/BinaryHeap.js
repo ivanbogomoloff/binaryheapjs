@@ -1,3 +1,11 @@
+/**
+ * By default use all building strategy (eager and lazy)
+ * but if you need more speed in some cases, you need
+ * use eager and lazy strategies in insert and extract methods
+ * For implement this please override insert and extract methods
+ * @param a
+ * @constructor
+ */
 var BinaryHeap = function(a) {
     this.d = a || [];
     this.restore();
@@ -51,12 +59,12 @@ BinaryHeap.prototype.heapify = function(i) {
     var left = this.getLeft(i);
     var right = this.getRight(i);
     var largest = i;
-    if (this.d[left] && this.d[left] >= this.d[largest])
+    if (this.d[left] && this.compareLeft(left, largest))
     {
         largest = left;
     }
 
-    if (this.d[right] && this.d[right] >= this.d[largest])
+    if (this.d[right] && this.compareRight(right, largest))
     {
         largest = right;
     }
@@ -86,4 +94,37 @@ BinaryHeap.prototype.extract = function() {
     this.restore();
 
     return max;
+};
+/**
+ * Insert into heap some value
+ * @param v
+ */
+BinaryHeap.prototype.insert = function(v) {
+    this.d.push(v);
+    this.restore();
+};
+/**
+ *
+ * @param leftIndex
+ * @param largestIndex
+ * @returns {boolean}
+ */
+BinaryHeap.prototype.compareLeft = function(leftIndex, largestIndex) {
+    return this.d[leftIndex] >= this.d[largestIndex];
+};
+/**
+ *
+ * @param rightIndex
+ * @param largestIndex
+ * @returns {boolean}
+ */
+BinaryHeap.prototype.compareRight = function(rightIndex, largestIndex) {
+    return this.d[rightIndex] >= this.d[largestIndex];
+};
+/**
+ * Return max (min) value, but not removing int
+ * @returns {*}
+ */
+BinaryHeap.prototype.max = function() {
+    return this.d[0];
 };

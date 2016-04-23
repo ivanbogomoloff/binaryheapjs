@@ -6,27 +6,12 @@
 var BinaryMinHeap = function(a) {
     this.d = a || [];
 
-    this.heapify = function(i) {
-        var left = this.getLeft(i);
-        var right = this.getRight(i);
-        var largest = i;
-        if (this.d[left] && this.d[left] <= this.d[largest])
-        {
-            largest = left;
-        }
+    this.compareLeft = function(leftIndex, largestIndex) {
+        return this.d[leftIndex] <= this.d[largestIndex];
+    };
 
-        if (this.d[right] && this.d[right] <= this.d[largest])
-        {
-            largest = right;
-        }
-
-        if (largest != i)
-        {
-            var tmp = this.d[i];
-            this.d[i] = this.d[largest];
-            this.d[largest] = tmp;
-            this.heapify(largest);
-        }
+    this.compareRight = function(rightIndex, largestIndex) {
+        return this.d[rightIndex] <= this.d[largestIndex];
     };
 
     this.__proto__ = new BinaryHeap(a);

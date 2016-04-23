@@ -26,6 +26,52 @@
     console.log(binaryHeap.extract());
     console.log(binaryHeap.d);
 
+    binaryHeap.insert(39);
+    binaryHeap.insert(6);
+    binaryHeap.insert(18);
+    binaryHeap.insert(4);
+    binaryHeap.insert(9);
+    console.log(binaryHeap.d);
+    console.log(binaryHeap.extract());
+    console.log(binaryHeap.extract());
+
+    /**
+     * test with objects
+     */
+    var Node = function(objectVal) {
+        this.value = objectVal;
+    };
+    /**
+     * Example for use objects in heap
+     *
+     * @param a
+     * @constructor
+     */
+    var NodesMaxHeap = function(a) {
+        this.d = a || [];
+
+        this.compareLeft = function(leftIndex, largestIndex) {
+            return this.d[leftIndex].value >= this.d[largestIndex].value;
+        };
+
+        this.compareRight = function(rightIndex, largestIndex) {
+            return this.d[rightIndex].value >= this.d[largestIndex].value;
+        };
+
+        this.__proto__ = new BinaryHeap(a);
+        this.restore();
+    };
+
+    var nodesHeap = new NodesMaxHeap();
+
+    nodesHeap.insert(new Node(7));
+    nodesHeap.insert(new Node(1));
+    nodesHeap.insert(new Node(4));
+    nodesHeap.insert(new Node(9));
+    nodesHeap.insert(new Node(5));
+    console.log(nodesHeap.extract());
+    console.log(nodesHeap.extract());
+    console.log(nodesHeap.extract());
 </script>
 </body>
 </html>
