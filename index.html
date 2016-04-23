@@ -11,6 +11,7 @@
     //test1
     var test = [1, 2, 16, 4, 6, 11, 8, 9, 5, 10, 28].shuffle();
     var binaryHeap = new BinaryMaxHeap(test);
+    console.log(binaryHeap.d);
     console.log(binaryHeap.extract()); //28(for max heap) - 1 (for min heap)
     console.log(binaryHeap.extract()); //16(for max heap) - 2(for min heap)
     console.log(binaryHeap.extract()); //11(for max heap) - 4(for min heap)

@@ -56,3 +56,19 @@ for get current max(min) value
 ```javascript
 console.log(nodesHeap.max()); //Node {value: 4}
 ```
+For loop over values use this:
+```javascript
+//loop from bottom to top
+binaryHeap.iterateUp(function(parentValue, leftValue, rightValue) {
+    console.log('parent: ' + parentValue);
+    console.log('left: ' + leftValue);
+    console.log('right: ' + rightValue);
+});
+//or from top to bottom
+binaryHeap.iterateDown(function(parentValue, leftValue, rightValue) {
+    console.log('parent: ' + parentValue);
+    console.log('left: ' + leftValue);
+    console.log('right: ' + rightValue);
+    //last parent will have leftValue = null and rightValue = null
+});
+```

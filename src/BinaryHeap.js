@@ -128,3 +128,73 @@ BinaryHeap.prototype.compareRight = function(rightIndex, largestIndex) {
 BinaryHeap.prototype.max = function() {
     return this.d[0];
 };
+/**
+ * Iterate from bottom to top
+ * @param callback (parent, left, right)
+ */
+BinaryHeap.prototype.iterateUp = function(callback) {
+    var hs = this.d.length - 1;
+    var prevComb = null;
+    function getParent(i) {
+        return Math.ceil(i / 2 - 1);
+    };
+
+    for(var i = hs; i >= 0; i--)
+    {
+        var p = getParent(i);
+        if (this.d[p] == undefined)
+        {
+            break;
+        }
+        var pv = this.d[p];
+        var lv = null;
+        var rv = null;
+        var l  = this.getLeft(p);
+        var r  = this.getRight(p);
+        if (this.d[l]) {
+            lv = this.d[l];
+        }
+
+        if (this.d[r]) {
+            rv = this.d[r];
+        }
+
+        var comb = pv + '-' + lv + '-' + rv;
+        if (comb != prevComb){
+            callback(pv, lv, rv);
+        }
+        prevComb = comb;
+    }
+};
+
+BinaryHeap.prototype.iterateDown = function(callback) {
+    var hs = this.d.length;
+    var prevComb = null;
+    for(var i = 0; i < hs; i++)
+    {
+        var p = this.getParent(i);
+        if (this.d[p] == undefined)
+        {
+            break;
+        }
+
+        var pv = this.d[p];
+        var lv = null;
+        var rv = null;
+        var l  = this.getLeft(p);
+        var r  = this.getRight(p);
+        if (this.d[l]) {
+            lv = this.d[l];
+        }
+
+        if (this.d[r]) {
+            rv = this.d[r];
+        }
+
+        var comb = pv + '-' + lv + '-' + rv;
+        if (comb != prevComb){
+            callback(pv, lv, rv);
+        }
+        prevComb = comb;
+    }
+};
